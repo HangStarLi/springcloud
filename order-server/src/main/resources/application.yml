@@ -1,0 +1,11 @@
+server:
+  port: 8781
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: order-server
+
+#选择负载均衡策略

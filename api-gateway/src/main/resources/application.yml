@@ -1,0 +1,23 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: api-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+#自定义路由映射
+#http://localhost:9000/order-server-feign/listall
+zuul:
+  routes:
+    order-server-feign: /apigateway/order/**
+    product-server: /apigateway/product/** #不可一样，不然存在覆盖
+    #http://localhost:9000/apigateway/listall
+
+  #忽略服务
+  #ignored-services: product-server
+  ignored-patterns: /*-server-*/**
+  #去除敏感头：Cookie,不然Coockie中的值获取不到
+  sensitive-headers:
